@@ -14,6 +14,7 @@ start_word = "START_WORD"
 end_word = "END_WORD"
 
 def data_preprocessing():
+    print ("Start Proprocessing Input Data")
     with open("data/reddit-comments-2015-08.csv") as file:
         reader = csv.reader(file, skipinitialspace=True)
         sentences = itertools.chain(*[nltk.sent_tokenize(x[0].decode('utf-8').lower()) for x in reader])
@@ -34,6 +35,7 @@ def data_preprocessing():
     # Create the training data
     x_train = np.asarray([[word_to_index[w] for w in sent[:-1]] for sent in word_sentences])
     y_train = np.asarray([[word_to_index[w] for w in sent[1:]] for sent in word_sentences])
+    print ("Finishing Data Processing")
     return x_train, y_train
 
 
